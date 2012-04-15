@@ -35,6 +35,8 @@
 						sColor = document.getElementById("color-hair-shadow").value;
 					if(r == 0x00 && g == 0x58 && b == 0x93) 
 						sColor = document.getElementById("color-ribbon").value;
+					if(r == 0x2D && g == 0xAF && b == 0xFF) 
+						sColor = document.getElementById("color-background").value;
 					
 					if(sColor != "") {
 						r = parseInt(sColor.substring(0, 2), 16);
@@ -80,9 +82,14 @@ helloworld
 				<img src="haru.png" id="image" class="src-icon" width="96" height="96" onload="createImage();" />
 				<canvas width="96" height="96" id="canvas"></canvas>
 				<br />
-				髪の色<input id="color-hair-main" class="color" value="b0e8f6" size="8" onchange="createImage();">
-				髪の影<input id="color-hair-shadow" class="color" value="72dcf7" size="8" onchange="createImage();">
-				リボン<input id="color-ribbon" class="color" value="005893" size="8" onchange="createImage();">
+				髪の色
+				<input id="color-hair-main" class="color" value="b0e8f6" size="8" onchange="createImage();">
+				髪の影
+				<input id="color-hair-shadow" class="color" value="72dcf7" size="8" onchange="createImage();">
+				リボン
+				<input id="color-ribbon" class="color" value="005893" size="8" onchange="createImage();">
+				背景
+				<input id="color-background" class="color" value="2dabff" size="8" onchange="createImage();">
 
 				<p>
 				 作った人: <a href="https://twitter.com/#!/kazoo04">@kazoo04</a>
