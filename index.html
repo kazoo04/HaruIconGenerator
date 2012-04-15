@@ -12,13 +12,13 @@
 		<script type="text/javascript" src="jscolor/jscolor.js"></script>
 		<script type="text/javascript">
 			function createImage() {
-				var context = document.getElementById("canvas").getContext("2d");
+				var ctx = document.getElementById("canvas").getContext("2d");
 				var image = document.getElementById("image");
 
-				context.drawImage(image, 0, 0);
+				ctx.drawImage(image, 0, 0);
 
-				var input = context.getImageData(0, 0, image.width, image.height);
-				var output = context.createImageData(image.width, image.height);
+				var input = ctx.getImageData(0, 0, image.width, image.height);
+				var output = ctx.createImageData(image.width, image.height);
 				var inputData = input.data;
 				var outputData = output.data;
 
@@ -50,13 +50,28 @@
 					outputData[i + 3] = 255;
 				}
 
-				context.putImageData(output, 0, 0);
+				ctx.putImageData(output, 0, 0);
+			}
+
+			function resetColor() {
+				document.getElementById("color-hair-main").value		= "b9e8f6";
+				document.getElementById("color-hair-shadow").value	= "72dcf7";
+				document.getElementById("color-ribbon").value				= "005893";
+				document.getElementById("color-background").value		= "2dabff";
+			}
+
+			function saveImage() {
+				var canvas = document.getElementById("canvas");
+				var img = new Image();
+				img.src = canvas.toDataURL("image/png");
+				img.onload = function() {
+					location.href = img.src;
+				};
 			}
 		</script>
   </head>
 
-  <body>
-helloworld
+  <body onload="resetColor();">
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
@@ -82,14 +97,18 @@ helloworld
 				<img src="haru.png" id="image" class="src-icon" width="96" height="96" onload="createImage();" />
 				<canvas width="96" height="96" id="canvas"></canvas>
 				<br />
+
 				髪の色
-				<input id="color-hair-main" class="color" value="b0e8f6" size="8" onchange="createImage();">
+				<input id="color-hair-main" class="color" size="8" onchange="createImage();">
 				髪の影
-				<input id="color-hair-shadow" class="color" value="72dcf7" size="8" onchange="createImage();">
+				<input id="color-hair-shadow" class="color" size="8" onchange="createImage();">
 				リボン
-				<input id="color-ribbon" class="color" value="005893" size="8" onchange="createImage();">
+				<input id="color-ribbon" class="color" size="8" onchange="createImage();">
 				背景
-				<input id="color-background" class="color" value="2dabff" size="8" onchange="createImage();">
+				<input id="color-background" class="color" size="8" onchange="createImage();">
+				<br />
+				<button onclick="resetColor();">リセット</button>
+				<button onclick="saveImage();">保存</button>
 
 				<p>
 				 作った人: <a href="https://twitter.com/#!/kazoo04">@kazoo04</a>
