@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>はるアイコンジェネレータ</title>
+	<script type="text/javascript" src="jscolor/jscolor.js"></script>
+	<script type="text/javascript">
+		function generateImage() {
+			var context = document.getElementById("canvas").getContext("2d");
+			var image = document.getElementById("src-img");
+
+			context.drawImage(image, 0, 0);
+
+			var input = context.getImageData(0, 0, image.width, image.height);
+			var output = context.createImageData(image.width, image.height);
+			var inputData = input.data;
+			var outputData = output.data;
+
+			for(var i = 0, n = inputData.length; i < n; i += 4) {
+				outputData[i + 0] = inputData[i + 0];
+				outputData[i + 1] = inputData[i + 1];
+				outputData[i + 2] = inputData[i + 3];
+				outputData[i + 3] = inputData[i + 2];
+			}
+
+			context.putImageData(output, 0, 0);
+		}
+	</script>
+</head>
+
+<body>
+	<h1>はるアイコンジェネレータ</h1>
+	<p>
+	カラーピッカーを気の済むまで弄り倒したあとに画像を右クリックで保存できるぞ
+	</p>
+	<img src="haru.png" id="src-img" onload="generateImage();" />
+	<canvas width="96" height="96" id="canvas"></canvas>
+	<br />
+	髪の色<input id="color-hair-main" class="color" value="b0e8f6" size="8">
+	髪の影<input id="color-hair-shadow" class="color" value="72dcf7" size="8">
+	リボン<input id="color-ribbon" class="color" value="005893" size="8">
+
+	<p>
+	 作った人: <a href="https://twitter.com/#!/kazoo04">@kazoo04</a>
+	</p>
+	<p>
+	このサイトはHTML5と、
+	<a href="http://jscolor.com/">jscolor.js</a>
+	を使って実装されています。
+	</p>
+</body>
+
+</html>
+
