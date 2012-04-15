@@ -27,7 +27,7 @@
 					var g = inputData[i + 1];
 					var b = inputData[i + 2];
 
-					var sColor = "FFFFFF"
+					var sColor = "FFFFFF";
 
 					if(r == 0xB0 && g == 0xE8 && b == 0xF6)
 						sColor = document.getElementById("color-hair-main");
@@ -41,9 +41,9 @@
 					g = parseInt(sColor.subString(2, 4), 16);
 					b = parseInt(sColor.subString(4, 6), 16);
 
-					outputData[i + 0] = r
-					outputData[i + 1] = g
-					outputData[i + 2] = b
+					outputData[i + 0] = r;
+					outputData[i + 1] = g;
+					outputData[i + 2] = b;
 					outputData[i + 3] = 255;
 				}
 
