@@ -30,11 +30,11 @@
 					sColor = "FFFFFF";
 
 					if(r == 0xB0 && g == 0xE8 && b == 0xF6) 
-						sColor = document.getElementById("color-hair-main");
+						sColor = document.getElementById("color-hair-main").value;
 					if(r == 0x72 && g == 0xDC && b == 0xF7) 
-						sColor = document.getElementById("color-hair-shadow");
+						sColor = document.getElementById("color-hair-shadow").value;
 					if(r == 0x00 && g == 0x58 && b == 0x93) 
-						sColor = document.getElementById("color-ribbon");
+						sColor = document.getElementById("color-ribbon").value;
 					
 
 					r = parseInt(sColor.substring(0, 2), 16);
