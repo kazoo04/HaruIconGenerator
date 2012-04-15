@@ -27,19 +27,20 @@
 					var g = inputData[i + 1];
 					var b = inputData[i + 2];
 
-					sColor = "FFFFFF";
+					sColor = "";
 
 					if(r == 0xB0 && g == 0xE8 && b == 0xF6) 
-						sColor = document.getElementById("color-hair-main").value;
+						sColor = document.getElementById("color-hair-main");
 					if(r == 0x72 && g == 0xDC && b == 0xF7) 
-						sColor = document.getElementById("color-hair-shadow").value;
+						sColor = document.getElementById("color-hair-shadow");
 					if(r == 0x00 && g == 0x58 && b == 0x93) 
-						sColor = document.getElementById("color-ribbon").value;
+						sColor = document.getElementById("color-ribbon");
 					
-
-					r = parseInt(sColor.substring(0, 2), 16);
-					g = parseInt(sColor.substring(2, 4), 16);
-					b = parseInt(sColor.substring(4, 6), 16);
+					if(sColor != "") {
+						r = parseInt(sColor.substring(0, 2), 16);
+						g = parseInt(sColor.substring(2, 4), 16);
+						b = parseInt(sColor.substring(4, 6), 16);
+					}
 
 					outputData[i + 0] = r;
 					outputData[i + 1] = g;
