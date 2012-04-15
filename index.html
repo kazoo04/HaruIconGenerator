@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Haruicongenerator : はるアイコンつくるやつ" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+		<title>Haruicongenerator</title>
+		<script type="text/javascript" src="jscolor/jscolor.js"></script>
+		<script type="text/javascript">
+			function createImage() {
+				var context = document.getElementById("canvas").getContext("2d");
+				var image = document.getElementById("image");
+
+				context.drawImage(image, 0, 0);
+
+				var input = context.getImageData(0, 0, image.width, image.height);
+				var output = context.createImageData(image.width, image.height);
+				var inputData = input.data;
+				var outputData = output.data;
+
+				for(var i = 0, n = inputData.length; i < n; i += 4) {
+					outputData[i + 0] = inputData[i + 0];
+					outputData[i + 1] = inputData[i + 2];
+					outputData[i + 2] = inputData[i + 1];
+					outputData[i + 3] = 255;
+				}
+
+				context.putImageData(output, 0, 0);
+			}
+		</script>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/kazoo04/HaruIconGenerator">Fork Me on GitHub</a>
+
+          <h1 id="project_title">Haruicongenerator</h1>
+          <h2 id="project_tagline">はるアイコンつくるやつ</h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/kazoo04/HaruIconGenerator/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/kazoo04/HaruIconGenerator/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+			<section id="main_content" class="inner">
+				<h3>How to use</h3>
+				<p>
+				カラーピッカーを気の済むまで弄り倒したあとに画像を右クリックで保存できるぞ
+				</p>
+				<img src="haru.png" id="image" class="src-icon" width="96" height="96" onload="createImage();" />
+				<canvas width="96" height="96" id="canvas"></canvas>
+				<br />
+				髪の色<input id="color-hair-main" class="color" value="b0e8f6" size="8">
+				髪の影<input id="color-hair-shadow" class="color" value="72dcf7" size="8">
+				リボン<input id="color-ribbon" class="color" value="005893" size="8">
+
+				<p>
+				 作った人: <a href="https://twitter.com/#!/kazoo04">@kazoo04</a>
+				</p>
+				<p>
+				このサイトはHTML5と、
+				<a href="http://jscolor.com/">jscolor.js</a>
+				を使って実装されています。
+				</p>
+				<p>
+				<a href="http://www.kmonos.net/alang/d/">おすすめ</a>
+				</p>
+			</section>
+
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Haruicongenerator maintained by <a href="https://github.com/kazoo04">kazoo04</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
