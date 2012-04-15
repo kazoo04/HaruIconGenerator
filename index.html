@@ -35,9 +35,9 @@
 						sColor = document.getElementById("color-ribbon");
 					
 
-					r = sColor.subString(0, 2);
-					g = sColor.subString(2, 4);
-					b = sColor.subString(4, 6);
+					r = parseInt(sColor.subString(0, 2), 16);
+					g = parseInt(sColor.subString(2, 4), 16);
+					b = parseInt(sColor.subString(4, 6), 16);
 
 					outputData[i + 0] = r
 					outputData[i + 1] = g
