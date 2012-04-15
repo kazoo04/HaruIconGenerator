@@ -23,9 +23,25 @@
 				var outputData = output.data;
 
 				for(var i = 0, n = inputData.length; i < n; i += 4) {
-					outputData[i + 0] = inputData[i + 0];
-					outputData[i + 1] = inputData[i + 2];
-					outputData[i + 2] = inputData[i + 1];
+					var r = inputData[i + 0];
+					var g = inputData[i + 1];
+					var b = inputData[i + 2];
+
+					if(r == 0xB0 && g == 0xE8 && b == 0xF6) {
+						sColor = document.getElementById("color-hair-main");
+					if(r == 0x72 && g == 0xDC && b == 0xF7) {
+						sColor = document.getElementById("color-hair-shadow");
+					if(r == 0x00 && g == 0x58 && b == 0x93) {
+						sColor = document.getElementById("color-ribbon");
+					
+
+					r = sColor.subString(0, 2);
+					g = sColor.subString(2, 4);
+					b = sColor.subString(4, 6);
+
+					outputData[i + 0] = r
+					outputData[i + 1] = g
+					outputData[i + 2] = b
 					outputData[i + 3] = 255;
 				}
 
@@ -35,7 +51,7 @@
   </head>
 
   <body>
-
+helloworld
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
