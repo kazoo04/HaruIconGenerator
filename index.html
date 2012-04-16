@@ -8,67 +8,73 @@
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-		<title>Haruicongenerator</title>
-		<script type="text/javascript" src="jscolor/jscolor.js"></script>
-		<script type="text/javascript">
-			function createImage() {
-				var ctx = document.getElementById("canvas").getContext("2d");
-				var image = document.getElementById("image");
+    <title>Haruicongenerator</title>
+    <script type="text/javascript" src="jscolor/jscolor.js"></script>
+    <script type="text/javascript">
+      function createImage() {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        var image = document.getElementById("image");
 
-				ctx.drawImage(image, 0, 0);
+        ctx.drawImage(image, 0, 0);
 
-				var input = ctx.getImageData(0, 0, image.width, image.height);
-				var output = ctx.createImageData(image.width, image.height);
-				var inputData = input.data;
-				var outputData = output.data;
+        var input = ctx.getImageData(0, 0, image.width, image.height);
+        var output = ctx.createImageData(image.width, image.height);
+        var inputData = input.data;
+        var outputData = output.data;
 
-				for(var i = 0, n = inputData.length; i < n; i += 4) {
-					var r = inputData[i + 0];
-					var g = inputData[i + 1];
-					var b = inputData[i + 2];
+        for(var i = 0, n = inputData.length; i < n; i += 4) {
+          var r = inputData[i + 0];
+          var g = inputData[i + 1];
+          var b = inputData[i + 2];
 
-					sColor = "";
+          sColor = "";
 
-					if(r == 0xB0 && g == 0xE8 && b == 0xF6) 
-						sColor = document.getElementById("color-hair-main").value;
-					if(r == 0x72 && g == 0xDC && b == 0xF7) 
-						sColor = document.getElementById("color-hair-shadow").value;
-					if(r == 0x00 && g == 0x58 && b == 0x93) 
-						sColor = document.getElementById("color-ribbon").value;
-					if(r == 0x2D && g == 0xAB && b == 0xFF) 
-						sColor = document.getElementById("color-background").value;
-					
-					if(sColor != "") {
-						r = parseInt(sColor.substring(0, 2), 16);
-						g = parseInt(sColor.substring(2, 4), 16);
-						b = parseInt(sColor.substring(4, 6), 16);
-					}
+          if(r == 0xB0 && g == 0xE8 && b == 0xF6) 
+            sColor = document.getElementById("color-hair-main").value;
+          if(r == 0x72 && g == 0xDC && b == 0xF7) 
+            sColor = document.getElementById("color-hair-shadow").value;
+          if(r == 0x00 && g == 0x58 && b == 0x93) 
+            sColor = document.getElementById("color-ribbon-main").value;
+          if(r == 0x2D && g == 0xAB && b == 0xFF) 
+            sColor = document.getElementById("color-ribbon-shadow").value;
+          
+          if(sColor != "") {
+            r = parseInt(sColor.substring(0, 2), 16);
+            g = parseInt(sColor.substring(2, 4), 16);
+            b = parseInt(sColor.substring(4, 6), 16);
+          }
 
-					outputData[i + 0] = r;
-					outputData[i + 1] = g;
-					outputData[i + 2] = b;
-					outputData[i + 3] = 255;
-				}
+          outputData[i + 0] = r;
+          outputData[i + 1] = g;
+          outputData[i + 2] = b;
+          outputData[i + 3] = 255;
+        }
 
-				ctx.putImageData(output, 0, 0);
-			}
+        ctx.putImageData(output, 0, 0);
+      }
 
-			function resetColor() {
-				document.getElementById("color-hair-main").value		= "b9e8f6";
-				document.getElementById("color-hair-shadow").value	= "72dcf7";
-				document.getElementById("color-ribbon").value				= "005893";
-				document.getElementById("color-background").value		= "2dabff";
-			}
+      function resetColor() {
+        document.getElementById("color-hair-main").value    = "b9e8f6";
+        document.getElementById("color-hair-shadow").value  = "72dcf7";
+        document.getElementById("color-ribbon-main").value     = "005893";
+        document.getElementById("color-ribbon-shadow").value   = "2dabff";
+      }
 
-			function saveImage() {
-				var canvas = document.getElementById("canvas");
-				var img = new Image();
-				img.src = canvas.toDataURL("image/png");
-				img.onload = function() {
-					location.href = img.src;
-				};
-			}
-		</script>
+      function saveImage() {
+        var canvas = document.getElementById("canvas");
+        var img = new Image();
+        img.src = canvas.toDataURL("image/png");
+        img.onload = function() {
+          location.href = img.src;
+        };
+      }
+
+      function RGBtoHSV(r, g, b) {
+        var h, s, v;
+        var max = Math.max(Math.max(r, g), b);
+        var min = Math.min(Math.min(r, g), b);
+      }
+    </script>
   </head>
 
   <body onload="resetColor();">
@@ -89,39 +95,42 @@
 
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
-			<section id="main_content" class="inner">
-				<h3>How to use</h3>
-				<p>
-				カラーピッカーを気の済むまで弄り倒したあとに「保存」ボタンを押してみろ。いろいろ捗るぞ。
-				</p>
-				<img src="haru.png" id="image" class="src-icon" width="96" height="96" onload="createImage();" />
-				<canvas width="96" height="96" id="canvas"></canvas>
-				<br />
+      <section id="main_content" class="inner">
+        <h3>How to use</h3>
+        <p>
+        カラーピッカーを気の済むまで弄り倒したあとに「保存」ボタンを押してみろ。いろいろ捗るぞ。
+        </p>
+        <img src="haru.png" id="image" class="src-icon" width="96" height="96" onload="createImage();" />
+        <canvas width="96" height="96" id="canvas"></canvas>
+        <br />
 
-				髪の色
-				<input id="color-hair-main" class="color" size="8" onchange="createImage();">
-				髪の影
-				<input id="color-hair-shadow" class="color" size="8" onchange="createImage();">
-				リボン
-				<input id="color-ribbon" class="color" size="8" onchange="createImage();">
-				背景
-				<input id="color-background" class="color" size="8" onchange="createImage();">
-				<br />
-				<button onclick="resetColor();">リセット</button>
-				<button onclick="saveImage();">保存</button>
+        髪
+        <input id="color-hair-main" class="color" size="8" onchange="createImage();">
+        髪の影
+        <input id="color-hair-shadow" class="color" size="8" onchange="createImage();">
+        リボン
+        <input id="color-ribbon-main" class="color" size="8" onchange="createImage();">
+        リボンの影
+        <input id="color-ribbon-shadow" class="color" size="8" onchange="createImage();">
+        <!--
+          <button onclick="setShadowColor();">影の色をいい感じに(テスト)</button>
+        -->
+        <br />
+        <button onclick="resetColor();">リセット</button>
+        <button onclick="saveImage();">保存</button>
 
-				<p>
-				 作った人: <a href="https://twitter.com/#!/kazoo04">@kazoo04</a>
-				</p>
-				<p>
-				このサイトはHTML5と、
-				<a href="http://jscolor.com/">jscolor.js</a>
-				を使って実装されています。
-				</p>
-				<p>
-				<a href="http://www.kmonos.net/alang/d/">おすすめ</a>
-				</p>
-			</section>
+        <p>
+         作った人: <a href="https://twitter.com/#!/kazoo04">@kazoo04</a>
+        </p>
+        <p>
+        このサイトはHTML5と、
+        <a href="http://jscolor.com/">jscolor.js</a>
+        を使って実装されています。
+        </p>
+        <p>
+        <a href="http://www.kmonos.net/alang/d/">おすすめ</a>
+        </p>
+      </section>
 
     <div id="footer_wrap" class="outer">
       <footer class="inner">
